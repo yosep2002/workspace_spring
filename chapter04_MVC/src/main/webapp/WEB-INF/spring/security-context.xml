@@ -6,12 +6,12 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="customAccessDenied"
-		class="org.kys.security.CustomAccessDeniedHandler"></bean>
+		class="org.jae.security.CustomAccessDeniedHandler"></bean>
 	<bean id="customLoginSuccess"
-		class="org.kys.security.CustomLoginSuccessHandler"></bean>
+		class="org.jae.security.CustomLoginSuccessHandler"></bean>
 	<bean id="bcryptPasswordEncoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
-	<bean id = "customUserDetailService" class = "org.kys.security.CustomUserDetailService"></bean>
+	<bean id = "customUserDetailService" class = "org.jae.security.CustomUserDetailService"></bean>
 		
 
 
