@@ -7,8 +7,8 @@
 
 	<bean id="customAccessDenied"
 		class="org.jae.security.CustomAccessDeniedHandler"></bean>
-	<bean id="customLoginSuccess"
-		class="org.jae.security.CustomLoginSuccessHandler"></bean>
+	<!-- <bean id="customLoginSuccess"
+		class="org.jae.security.CustomLoginSuccessHandler"></bean> -->
 	<bean id="bcryptPasswordEncoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 	<bean id = "customUserDetailService" class = "org.jae.security.CustomUserDetailService"></bean>
@@ -24,12 +24,14 @@
 		<security:intercept-url pattern="/sample/admin"
 			access="hasRole('ROLE_ADMIN')" /> <!-- hasRole 권한 부여 -->
 
-		<security:form-login login-page="/customLogin"
-			authentication-success-handler-ref="customLoginSuccess" />
+		<!-- <security:form-login login-page="/customLogin"
+			authentication-success-handler-ref="customLoginSuccess" /> -->
+		<security:form-login login-page="/customLogin"/>
 
 		<security:logout logout-url="/customLogout"
 			invalidate-session="true" 
-			delete-cookies="remember-me"/>
+			delete-cookies="remember-me"
+			logout-success-url="/"/>
 
 		<security:access-denied-handler
 			ref="customAccessDenied" />

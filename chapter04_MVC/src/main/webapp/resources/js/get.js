@@ -99,6 +99,7 @@ const modifyReplyBtn = document.querySelector('#modifyReplyBtn');
 const removeReplyBtn = document.querySelector('#removeReplyBtn');
 const closeModalBtn = document.querySelector('#closeModalBtn');
 
+
 function openModal() {
 	modal.style.display = "block";
 }
@@ -111,12 +112,11 @@ function resisterModalPage() {
 	
 	// 보여질 목록 수정
 	 regReplyModalStyle();
-
 	// input 입력창 내용 초기화
 	 inputReply.value = '';
-	 inputReplyer.value = '';
+	 inputReplyer.value = username;
 	
-	
+	 inputReplyer.readOnly = true;
 	openModal();
 
 	
@@ -160,41 +160,46 @@ let rno;
 let rvo ={};
 // 댓글 클릭시 나오는 이벤트
 function modifyModalPage(li) {
-    modifyReplyModalStyle();
-    
-    // li 요소 안의 input[type="hidden"] 요소 가져오기
-    let hiddenInput = li.querySelector('input[type="hidden"]');
-    
-    // 각 데이터를 가져와주고
-    rno = hiddenInput.getAttribute('data-rno');
-    let reply = hiddenInput.getAttribute('data-reply');
-    let replyer = hiddenInput.getAttribute('data-replyer');
-                          // 지금 이 상태의 data-date는 String일것이기 때문에 넘버로 형변환 해준다 
-    let date = displayTime(Number(hiddenInput.getAttribute('data-date')));  
-    // date 값을 displayTime 함수로 변환시켜주면
 
-    // 콘솔에 변환된 값이 출력 된다
-    console.log(rno, reply, replyer, date);
-    
-    inputReply.value = reply;
-    inputReplyer.value = replyer;
-    inputReplydate.value = date;
-  
-    
-    
-    openModal();
+	if (inputReplyer.value == username) {
+		
+		modifyReplyModalStyle();
+		
+		// li 요소 안의 input[type="hidden"] 요소 가져오기
+		let hiddenInput = li.querySelector('input[type="hidden"]');
+		
+		// 각 데이터를 가져와주고
+		rno = hiddenInput.getAttribute('data-rno');
+		let reply = hiddenInput.getAttribute('data-reply');
+		let replyer = hiddenInput.getAttribute('data-replyer');
+		// 지금 이 상태의 data-date는 String일것이기 때문에 넘버로 형변환 해준다 
+		let date = displayTime(Number(hiddenInput.getAttribute('data-date')));  
+		// date 값을 displayTime 함수로 변환시켜주면
+		
+		// 콘솔에 변환된 값이 출력 된다
+		console.log(rno, reply, replyer, date);
+		
+		inputReply.value = reply;
+		inputReplyer.value = replyer;
+		inputReplydate.value = date;
+		
+		
+		
+		openModal();
+	}
 }
 
 
 // 댓글 클릭시 나오는 모달 스타일 변경 함수
 function modifyReplyModalStyle() {
-	modifyReplyBtn.classList.remove("hide");
-	removeReplyBtn.classList.remove("hide");
-	addyReplyBtn.classList.add("hide");
-	inputReplydate.closest('div').classList.remove("hide");
-	// 리드 온리를 부여해서 수정이 안되게 해야함
-	inputReplyer.setAttribute('readonly' , true);
-	inputReplydate.setAttribute('readonly' , true);
+
+		modifyReplyBtn.classList.remove("hide");
+		removeReplyBtn.classList.remove("hide");
+		addyReplyBtn.classList.add("hide");
+		inputReplydate.closest('div').classList.remove("hide");
+		// 리드 온리를 부여해서 수정이 안되게 해야함
+		inputReplyer.setAttribute('readonly' , true);
+		inputReplydate.setAttribute('readonly' , true);
 }
 // 실제 수정 함수
 function modifyReply() {

@@ -1,6 +1,3 @@
-console.log("리플라이랑께요");
-
-
 const replyService = (function() {
 	
 	// add 함수 정의
