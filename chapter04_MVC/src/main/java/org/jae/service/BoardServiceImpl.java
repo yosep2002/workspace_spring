@@ -2,11 +2,14 @@ package org.jae.service;
 
 import java.util.List;
 
+import org.jae.domain.AuthVO;
 import org.jae.domain.BoardAttachVO;
 import org.jae.domain.BoardVO;
 import org.jae.domain.Criteria;
+import org.jae.domain.MemberVO;
 import org.jae.mapper.BoardAttachMapper;
 import org.jae.mapper.BoardMapper;
+import org.jae.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -82,4 +85,15 @@ public class BoardServiceImpl implements BoardService {
 		log.info("getAttachList... " + bno  );
 		return attachmapper.findByBno(bno);
 	}
+
+	@Override
+	public int signIn(MemberVO vo) {
+		int result = mapper.signIn(vo);
+		AuthVO auth = new AuthVO();
+		auth.setUserId(vo.getUserId());
+		auth.setAuth("ROLE_USER");
+		mapper.giveAuth(auth);
+		return result;
+	}
+
 }

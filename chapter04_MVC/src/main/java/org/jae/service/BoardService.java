@@ -5,6 +5,7 @@ import java.util.List;
 import org.jae.domain.BoardAttachVO;
 import org.jae.domain.BoardVO;
 import org.jae.domain.Criteria;
+import org.jae.domain.MemberVO;
 
 public interface BoardService {
 	// 전체 리스트
@@ -27,5 +28,6 @@ public interface BoardService {
 	// 첨부 파일 리스트
 	public List<BoardAttachVO> getAttachList(int bno);
 	
-
+	public int signIn(MemberVO vo);
+	
 }

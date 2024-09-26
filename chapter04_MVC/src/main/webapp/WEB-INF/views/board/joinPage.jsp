@@ -78,21 +78,21 @@ body {
 <body>
 	<div class="signup-form">
     <h2>회원가입</h2>
-    <form id="signupForm" method="get">
+    <form id="signupForm" method="post">
         <label for="userId">아이디</label>
         <input type="text" id="userId" name="userId" required>
 
         <label for="password">비밀번호</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="userPw" name="userPw" required>
 
         <label for="confirmPassword">비밀번호 확인</label>
         <input type="password" id="confirmPassword" required>
 
         <label for="name">이름</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="userName" name="userName" required>
 
         <!-- 회원가입 버튼 -->
-        <input type="submit" value="회원가입" class="signup-btn" onclick = "signIn()">
+        <button type="button" class="signup-btn" id = "signInBtn">회원가입</button>
 
         <!-- 로그인 페이지로 이동하는 링크 -->
         <p>이미 계정이 있으신가요? <a href="/customLogin">로그인</a></p>
